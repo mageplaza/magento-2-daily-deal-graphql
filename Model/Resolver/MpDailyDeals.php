@@ -71,6 +71,9 @@ class MpDailyDeals implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
+        if (!$this->helperData->isEnabled()) {
+            throw new GraphQlInputException(__('The module is disabled'));
+        }
         if ($args['currentPage'] < 1) {
             throw new GraphQlInputException(__('currentPage value must be greater than 0.'));
         }
