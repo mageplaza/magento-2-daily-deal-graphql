@@ -30,7 +30,20 @@ use Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesInter
  */
 class EntityAttributesForAst implements FieldEntityAttributesInterface
 {
-    protected $additionalAttributes = [];
+    protected $additionalAttributes = [
+        'deal_id',
+        'product_id',
+        'product_name',
+        'product_sku',
+        'status',
+        'is_featured',
+        'deal_price',
+        'deal_qty',
+        'sale_qty',
+        'store_ids',
+        'date_from',
+        'date_to',
+    ];
 
     /**
      * EntityAttributesForAst constructor.

@@ -18,8 +18,6 @@ input MageplazaDailyDealsFilterInput {
     store_ids: FilterTypeInput @doc(description: "Store Ids")
     date_from: FilterTypeInput @doc(description: "Date From")
     date_to: FilterTypeInput @doc(description: "Date To")
-    created_at: FilterTypeInput @doc(description: "Created At")
-    updated_at: FilterTypeInput @doc(description: "Updated At")
 }
 type MageplazaDailyDealsOutput {
     total_count: Int @doc(description: "The total number of results returned when a query is applied"),
