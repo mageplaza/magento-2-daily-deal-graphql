@@ -1,9 +1,9 @@
 type Query {
     MpDailyDeals(
         filter: MageplazaDailyDealsFilterInput @doc(description: "Identifies which Mageplaza Daily Deals attributes to search for and return."),
-        pageSize: Int = 5 @doc(description: "How many items should show on the page?"),
-        currentPage: Int = 1 @doc(description: "Allow page number to start with 1")
-    ):MageplazaDailyDealsOutput @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\MpDailyDeals") @doc(description: "The query searches for Mageplaza Daily Deals that match the criteria specified in the filter.") @cache(cacheIdentity: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal\\Identity")
+        pageSize: Int = 5 @doc(description: "Number of items should be shown on the page"),
+        currentPage: Int = 1 @doc(description: "Allow page number to start from 1")
+    ):MageplazaDailyDealsOutput @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\MpDailyDeals") @doc(description: "Queries search for Mageplaza Daily Deals that match the filtered criteria.") @cache(cacheIdentity: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal\\Identity")
 }
 input MageplazaDailyDealsFilterInput {
     deal_id: FilterTypeInput @doc(description: "Deal Id")
@@ -11,18 +11,18 @@ input MageplazaDailyDealsFilterInput {
     product_name: FilterTypeInput @doc(description: "Product Name")
     product_sku: FilterTypeInput @doc(description: "Product Sku")
     status: FilterTypeInput @doc(description: "Status")
-    is_featured: FilterTypeInput @doc(description: "Is Featured")
+    is_featured: FilterTypeInput @doc(description: "Show the deal on Feature Deal Slider")
     deal_price: FilterTypeInput @doc(description: "Deal Price")
     deal_qty: FilterTypeInput @doc(description: "Deal Qty")
-    sale_qty: FilterTypeInput @doc(description: "Sale Qty")
+    sale_qty: FilterTypeInput @doc(description: "Qty of items sold")
     store_ids: FilterTypeInput @doc(description: "Store Ids")
-    date_from: FilterTypeInput @doc(description: "Date From")
-    date_to: FilterTypeInput @doc(description: "Date To")
+    date_from: FilterTypeInput @doc(description: "Date to start running the deal")
+    date_to: FilterTypeInput @doc(description: "Date to stop running the deal")
 }
 type MageplazaDailyDealsOutput {
     total_count: Int @doc(description: "The total number of results returned when a query is applied"),
     items: [MageplazaDailyDeals] @doc(description: "MageplazaDailyDeals data is satisfied"),
-    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page info and current page values specified in the query")
 }
 
 type MageplazaDailyDeals {
@@ -31,18 +31,18 @@ type MageplazaDailyDeals {
   product_name: String @doc(description: "Product Name")
   product_sku: String @doc(description: "Product Sku")
   status: Int @doc(description: "Status")
-  is_featured: Int @doc(description: "Is Featured")
+  is_featured: Int @doc(description: "Show the deal on Feature Deal Slider")
   deal_price: Float @doc(description: "Deal Price")
   deal_qty: Int @doc(description: "Deal Qty")
-  sale_qty: Int @doc(description: "Sale Qty")
+  sale_qty: Int @doc(description: "Qty of items sold")
   store_ids: String @doc(description: "Store Ids")
-  date_from: String @doc(description: "Date From")
-  date_to: String @doc(description: "Date To")
-  created_at: String @doc(description: "Created At")
-  updated_at: String @doc(description: "Updated At")
+  date_from: String @doc(description: "Date to start running the deal")
+  date_to: String @doc(description: "Date to stop running the deal")
+  created_at: String @doc(description: "Creation date of the deal")
+  updated_at: String @doc(description: "Last modification date of the deal")
   discount_label: String @doc(description: "Discount Label")
 }
 
 interface ProductInterface {
-    mp_dailydeal: MageplazaDailyDeals @doc(description: "Mageplaza Daily Deal") @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal")
+    mp_dailydeal: MageplazaDailyDeals @doc(description: "Mageplaza Daily Deals") @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal")
 }
