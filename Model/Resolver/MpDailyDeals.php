@@ -24,11 +24,11 @@ namespace Mageplaza\DailyDealGraphQl\Model\Resolver;
 
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
+use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as SearchCriteriaBuilder;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\DailyDeal\Helper\Data;
-use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as SearchCriteriaBuilder;
-use Mageplaza\DailyDealGraphQl\Model\Resolver\Deal\DataProvider;
+use Mageplaza\DailyDeal\Model\DealRepository;
 
 /**
  * Class MpDailyDeals
@@ -45,25 +45,25 @@ class MpDailyDeals implements ResolverInterface
      */
     protected $searchCriteriaBuilder;
     /**
-     * @var DataProvider
+     * @var DealRepository
      */
-    protected $dataProvider;
+    protected $dealRepository;
 
     /**
      * MpDailyDeals constructor.
      *
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param DataProvider $dataProvider
+     * @param DealRepository $dealRepository
      * @param Data $helperData
      */
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
-        DataProvider $dataProvider,
+        DealRepository $dealRepository,
         Data $helperData
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->dataProvider = $dataProvider;
-        $this->helperData = $helperData;
+        $this->dealRepository        = $dealRepository;
+        $this->helperData            = $helperData;
     }
 
     /**
@@ -86,17 +86,17 @@ class MpDailyDeals implements ResolverInterface
         $searchCriteria = $this->searchCriteriaBuilder->build($field->getName(), $args);
         $searchCriteria->setCurrentPage($args['currentPage']);
         $searchCriteria->setPageSize($args['pageSize']);
-        $collection = $this->dataProvider->getData($searchCriteria);
-        $collectionSize = $collection->getSize();
+        $searchResult     = $this->dealRepository->getAllDeals($searchCriteria);
+        $collectionSize = $searchResult->getTotalCount();
         //possible division by 0
-        $pageSize = $collection->getPageSize();
+        $pageSize = $searchResult->getSearchCriteria()->getPageSize();
         if ($pageSize) {
             $maxPages = ceil($collectionSize / $searchCriteria->getPageSize());
         } else {
             $maxPages = 0;
         }
 
-        $currentPage = $collection->getCurPage();
+        $currentPage = $searchResult->getSearchCriteria()->getCurrentPage();
         if ($collectionSize > 0 && $searchCriteria->getCurrentPage() > $maxPages) {
             throw new GraphQlInputException(
                 __(
@@ -107,8 +107,8 @@ class MpDailyDeals implements ResolverInterface
         }
 
         return [
-            'total_count' => $collection->getSize(),
-            'items' => $collection->getItems(),
+            'total_count' => $collectionSize,
+            'items'       => $searchResult->getItems(),
             'page_info'   => [
                 'page_size'    => $pageSize,
                 'current_page' => $currentPage,
