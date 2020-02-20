@@ -30,7 +30,6 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\DailyDeal\Block\Product\View\Label;
 use Mageplaza\DailyDeal\Helper\Data;
-use Mageplaza\DailyDeal\Model\DealFactory;
 
 /**
  * Class Deal
@@ -52,10 +51,6 @@ class Deal implements ResolverInterface
      * @var FieldTranslator
      */
     protected $fieldTranslator;
-    /**
-     * @var DealFactory
-     */
-    protected $dealFactory;
 
     /**
      * Deal constructor.
@@ -63,18 +58,15 @@ class Deal implements ResolverInterface
      * @param Data $helperData
      * @param Label $dealBlock
      * @param FieldTranslator $fieldTranslator
-     * @param DealFactory $dealFactory
      */
     public function __construct(
         Data $helperData,
         Label $dealBlock,
-        FieldTranslator $fieldTranslator,
-        DealFactory $dealFactory
+        FieldTranslator $fieldTranslator
     ) {
         $this->helperData      = $helperData;
         $this->block           = $dealBlock;
         $this->fieldTranslator = $fieldTranslator;
-        $this->dealFactory     = $dealFactory;
     }
 
     /**
@@ -91,7 +83,6 @@ class Deal implements ResolverInterface
         /** @var Product $product */
         $product   = $value['model'];
         $productId = $product->getId();
-        $fields    = $this->getProductFieldsFromInfo($info, 'mp_dailydeal');
         /** @var \Mageplaza\DailyDeal\Model\Deal $dealData */
         $dealData = $this->helperData->getProductDeal($productId);
 
@@ -99,50 +90,11 @@ class Deal implements ResolverInterface
             return [];
         }
 
-        $model    = $this->dealFactory->create();
-        foreach ($fields as $fieldProduct) {
-            if ($fieldProduct === 'discount_label') {
-                $percent = $this->helperData->checkDealConfigurableProduct($productId)
-                    ? $this->block->getMaxPercent($productId)
-                    : $this->block->getPercentDiscount($productId);
-                $model->setData('discount_label', $this->block->getLabel($percent));
-            } else {
-                $model->setData($fieldProduct, $dealData->getData($fieldProduct));
-            }
-        }
+        $percent = $this->helperData->checkDealConfigurableProduct($productId)
+            ? $this->block->getMaxPercent($productId)
+            : $this->block->getPercentDiscount($productId);
+        $dealData->setDiscountLabel($this->block->getLabel($percent));
 
-        return $model;
-    }
-
-    /**
-     * Return field names for all requested product fields.
-     *
-     * @param ResolveInfo $info
-     * @param string $productNodeName
-     *
-     * @return string[]
-     */
-    public function getProductFieldsFromInfo(ResolveInfo $info, string $productNodeName = 'product'): array
-    {
-        $fieldNames = [];
-        foreach ($info->fieldNodes as $node) {
-            if ($node->name->value !== $productNodeName) {
-                continue;
-            }
-            foreach ($node->selectionSet->selections as $selectionNode) {
-                if ($selectionNode->kind === 'InlineFragment') {
-                    foreach ($selectionNode->selectionSet->selections as $inlineSelection) {
-                        if ($inlineSelection->kind === 'InlineFragment') {
-                            continue;
-                        }
-                        $fieldNames[] = $this->fieldTranslator->translate($inlineSelection->name->value);
-                    }
-                    continue;
-                }
-                $fieldNames[] = $this->fieldTranslator->translate($selectionNode->name->value);
-            }
-        }
-
-        return $fieldNames;
+        return $dealData;
     }
 }
