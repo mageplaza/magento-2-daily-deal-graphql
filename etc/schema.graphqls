@@ -3,7 +3,7 @@ type Query {
         filter: MageplazaDailyDealsFilterInput @doc(description: "Identifies which Mageplaza Daily Deals attributes to search for and return."),
         pageSize: Int = 5 @doc(description: "Number of items should be shown on the page"),
         currentPage: Int = 1 @doc(description: "Allow page number to start from 1")
-    ):MageplazaDailyDealsOutput @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\MpDailyDeals") @doc(description: "Queries search for Mageplaza Daily Deals that match the filtered criteria.") @cache(cacheable: false)
+    ):MageplazaDailyDealsOutput @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\MpDailyDeals") @doc(description: "Queries search for Mageplaza Daily Deals that match the filtered criteria.")
 }
 input MageplazaDailyDealsFilterInput {
     deal_id: FilterTypeInput @doc(description: "Deal Id")
@@ -44,5 +44,5 @@ type MageplazaDailyDeals {
 }
 
 interface ProductInterface {
-    mp_dailydeal: MageplazaDailyDeals @doc(description: "Mageplaza Daily Deals") @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal")
+    mp_daily_deal: MageplazaDailyDeals @doc(description: "Mageplaza Daily Deals") @resolver(class: "Mageplaza\\DailyDealGraphQl\\Model\\Resolver\\Deal")
 }
