@@ -80,9 +80,7 @@ class MpDailyDeals implements ResolverInterface
         if ($args['pageSize'] < 1) {
             throw new GraphQlInputException(__('pageSize value must be greater than 0.'));
         }
-        if (!isset($args['filter'])) {
-            throw new GraphQlInputException(__("'filter' input argument is required."));
-        }
+
         $searchCriteria = $this->searchCriteriaBuilder->build($field->getName(), $args);
         $searchCriteria->setCurrentPage($args['currentPage']);
         $searchCriteria->setPageSize($args['pageSize']);
