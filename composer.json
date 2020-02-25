@@ -2,7 +2,7 @@
   "name": "mageplaza/module-daily-deal-graphql",
   "description": "Magento 2 Daily Deal GraphQl Extension ",
   "type": "magento2-module",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "license": "proprietary",
   "authors": [
     {
