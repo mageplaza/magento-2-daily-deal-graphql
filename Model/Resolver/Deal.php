@@ -83,6 +83,10 @@ class Deal implements ResolverInterface
         /** @var Product $product */
         $product   = $value['model'];
         $productId = $product->getId();
+        if (!$this->helperData->checkStatusDeal($productId)) {
+        	return [];
+        }
+        
         /** @var \Mageplaza\DailyDeal\Model\Deal $dealData */
         $dealData = $this->helperData->getProductDeal($productId);
 
