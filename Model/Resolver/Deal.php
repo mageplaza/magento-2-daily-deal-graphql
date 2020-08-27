@@ -86,7 +86,7 @@ class Deal implements ResolverInterface
         if (!$this->helperData->checkStatusDeal($productId)) {
         	return null;
         }
-        
+
         /** @var \Mageplaza\DailyDeal\Model\Deal $dealData */
         $dealData = $this->helperData->getProductDeal($productId);
 
@@ -98,6 +98,16 @@ class Deal implements ResolverInterface
             ? $this->block->getMaxPercent($productId)
             : $this->block->getPercentDiscount($productId);
         $dealData->setDiscountLabel($this->block->getLabel($percent));
+
+        $currentDate = $this->helperData->getCurrentDateTime();
+        $currentTime = strtotime($currentDate);
+        $fromDate    = $dealData->getDateFrom();
+        $toDate      = $dealData->getDateTo();
+        $remainTime = 0;
+        if (strtotime($toDate) >= $currentTime && strtotime($fromDate) <= $currentTime) {
+            $remainTime = (strtotime($toDate) - $currentTime) * 1000;
+        }
+        $dealData->setData('remaining_time', $remainTime);
 
         return $dealData;
     }
