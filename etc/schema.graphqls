@@ -41,6 +41,7 @@ type MageplazaDailyDeals {
   created_at: String @doc(description: "Creation date of the deal")
   updated_at: String @doc(description: "Last modification date of the deal")
   discount_label: String @doc(description: "Discount Label")
+  remaining_time: String @doc(description: "Remaining Time")
 }
 
 interface ProductInterface {

@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace Mageplaza\DailyDealGraphQl\Model\Resolver\Deal\FilterArgument;
 
 use Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesInterface;
+use Mageplaza\DailyDeal\Helper\Data;
 
 /**
  * Class EntityAttributesForAst
@@ -30,6 +31,11 @@ use Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesInter
  */
 class EntityAttributesForAst implements FieldEntityAttributesInterface
 {
+    /**
+     * @var Data
+     */
+    protected $helperData;
+
     protected $additionalAttributes = [
         'deal_id',
         'product_id',
@@ -48,10 +54,14 @@ class EntityAttributesForAst implements FieldEntityAttributesInterface
     /**
      * EntityAttributesForAst constructor.
      *
+     * @param Data $helperData
      * @param array $additionalAttributes
      */
-    public function __construct(array $additionalAttributes = [])
-    {
+    public function __construct(
+        Data $helperData,
+        array $additionalAttributes = []
+    ) {
+        $this->helperData = $helperData;
         $this->additionalAttributes = array_merge($this->additionalAttributes, $additionalAttributes);
     }
 
@@ -63,6 +73,10 @@ class EntityAttributesForAst implements FieldEntityAttributesInterface
         $fields = [];
         foreach ($this->additionalAttributes as $attribute) {
             $fields[$attribute] = 'String';
+        }
+
+        if ($this->helperData->versionCompare('2.3.4')) {
+            return $fields;
         }
 
         return array_keys($fields);
