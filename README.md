@@ -1,4 +1,4 @@
-# Daily Deal GraphQL
+# Magento 2 Daily Deal GraphQL (Support PWA)
 
 Mageplaza Daily Deal Extension supports getting and pushing data on the website with GraphQl.
 
