@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_DailyDealGraphQl
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+        <arguments>
+            <argument name="extendedConfigData" xsi:type="array">
+                <item name="mp_dailydeal_enabled" xsi:type="string">dailydeal/general/enabled</item>
+                <item name="mp_dailydeal_show_qty_remain" xsi:type="string">dailydeal/general/show_qty_remain</item>
+                <item name="mp_dailydeal_show_qty_sold" xsi:type="string">dailydeal/general/show_qty_sold</item>
+                <item name="mp_dailydeal_show_countdown_timer" xsi:type="string">dailydeal/general/countdown_timer/show_countdown_timer</item>
+                <item name="mp_dailydeal_clock_style" xsi:type="string">dailydeal/general/countdown_timer/clock_style</item>
+                <item name="mp_dailydeal_countdown_outer_color" xsi:type="string">dailydeal/general/countdown_timer/countdown_outer_color</item>
+                <item name="mp_dailydeal_countdown_inner_color" xsi:type="string">dailydeal/general/countdown_timer/countdown_inner_color</item>
+                <item name="mp_dailydeal_countdown_number_color" xsi:type="string">dailydeal/general/countdown_timer/countdown_number</item>
+                <item name="mp_dailydeal_countdown_text" xsi:type="string">dailydeal/general/countdown_timer/countdown_text</item>
+                <item name="mp_dailydeal_show_discount_label" xsi:type="string">dailydeal/general/discount_label/show_discount_label</item>
+                <item name="mp_dailydeal_content_label" xsi:type="string">dailydeal/general/discount_label/content_label</item>
+                <item name="mp_dailydeal_round_percent" xsi:type="string">dailydeal/general/discount_label/round_percent</item>
+                <item name="mp_dailydeal_show_on" xsi:type="string">dailydeal/general/discount_label/show_on</item>
+                <item name="mp_dailydeal_label_bg_color" xsi:type="string">dailydeal/general/discount_label/label_bg_color</item>
+                <item name="mp_dailydeal_label_border_color" xsi:type="string">dailydeal/general/discount_label/label_border_color</item>
+                <item name="mp_dailydeal_label_text_color" xsi:type="string">dailydeal/general/discount_label/label_text_color</item>
+                <item name="mp_dailydeal_all_deals_enabled" xsi:type="string">dailydeal/deal_pages/all_deals/enabled</item>
+                <item name="mp_dailydeal_all_deals_route" xsi:type="string">dailydeal/deal_pages/all_deals/route</item>
+                <item name="mp_dailydeal_all_deals_title" xsi:type="string">dailydeal/deal_pages/all_deals/title</item>
+                <item name="mp_dailydeal_new_deals_enabled" xsi:type="string">dailydeal/deal_pages/new_deals/enabled</item>
+                <item name="mp_dailydeal_new_deals_route" xsi:type="string">dailydeal/deal_pages/new_deals/route</item>
+                <item name="mp_dailydeal_new_deals_title" xsi:type="string">dailydeal/deal_pages/new_deals/title</item>
+                <item name="mp_dailydeal_best_deals_enabled" xsi:type="string">dailydeal/deal_pages/best_deals/enabled</item>
+                <item name="mp_dailydeal_best_deals_route" xsi:type="string">dailydeal/deal_pages/best_deals/route</item>
+                <item name="mp_dailydeal_best_deals_title" xsi:type="string">dailydeal/deal_pages/best_deals/title</item>
+                <item name="mp_dailydeal_featured_deals_enabled" xsi:type="string">dailydeal/deal_pages/featured_deals/enabled</item>
+                <item name="mp_dailydeal_featured_deals_route" xsi:type="string">dailydeal/deal_pages/featured_deals/route</item>
+                <item name="mp_dailydeal_featured_deals_title" xsi:type="string">dailydeal/deal_pages/featured_deals/title</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
