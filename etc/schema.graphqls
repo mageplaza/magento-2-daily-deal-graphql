@@ -53,7 +53,7 @@ type StoreConfig {
     mp_dailydeal_show_qty_remain : Boolean @doc(description: "The type contains information about a daily deal config")
     mp_dailydeal_show_qty_sold : Boolean @doc(description: "The type contains information about a daily deal config")
     mp_dailydeal_show_countdown_timer : Int @doc(description: "The type contains information about a daily deal config")
-    mp_dailydeal_clock_style : Int @doc(description: "The type contains information about a daily deal config")
+    mp_dailydeal_clock_style : String @doc(description: "The type contains information about a daily deal config")
     mp_dailydeal_countdown_outer_color : String @doc(description: "The type contains information about a daily deal config")
     mp_dailydeal_countdown_inner_color : String @doc(description: "The type contains information about a daily deal config")
     mp_dailydeal_countdown_number_color : String @doc(description: "The type contains information about a daily deal config")
