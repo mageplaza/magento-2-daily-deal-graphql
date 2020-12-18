@@ -1,5 +1,7 @@
 # Magento 2 Daily Deal GraphQL (Support PWA)
 
+Magento 2 Daily Deal GraphQL is a part of Mageplaza Daily Deals extension that adds GraphQL features; this supports PWA Studio. In other words, Mageplaza Daily Deal extension supports getting and pushing data on the website with GraphQL.
+
 [Mageplaza Daily Deal for Magento 2](https://www.mageplaza.com/magento-2-daily-deal-extension/) boosts online store sales effectively by offering customers daily deals. 
 
 Online shoppers will usually go to the online store and search for discounts. The flash sales online store offers during daily shopping are great incentives for customers to purchase the products. That’s why online stores need to please customers with daily deals so that they don’t need to wait until big shopping days to save money. 
@@ -11,8 +13,6 @@ From the admin backend, you can set up a daily deal for a specific product, limi
 Mageplaza Daily Deal for Magento 2 supports displaying daily deals on the sidebar with sidebar widgets. You can display random deals, top-selling deals, and upcoming deals in the sidebar of any page to draw visitors to the deals and convert them to repeat customers. The number of products can also be displayed to notify customers about the number of remaining products or products sold that can create urgency when the products are nearly out of stock. The number of products sold also indicates how a specific product is worth to buy or not, so it’s important to showcase this number to customers. 
 
 After configuring the daily deals to be automatically generated due to the schedule, the store admin can select the category to apply the deals, determine the special price, and the number of products generated. 
-
-Moreover, **Magento 2 Daily Deal GraphQL is a part of Mageplaza Daily Deals extension that adds GraphQL features; this supports PWA Studio.** In other words, Mageplaza Daily Deal extension supports getting and pushing data on the website with GraphQL.
 
 ## 1. How to install
 
