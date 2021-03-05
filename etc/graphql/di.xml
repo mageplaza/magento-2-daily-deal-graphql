@@ -52,6 +52,21 @@
                 <item name="mp_dailydeal_featured_deals_enabled" xsi:type="string">dailydeal/deal_pages/featured_deals/enabled</item>
                 <item name="mp_dailydeal_featured_deals_route" xsi:type="string">dailydeal/deal_pages/featured_deals/route</item>
                 <item name="mp_dailydeal_featured_deals_title" xsi:type="string">dailydeal/deal_pages/featured_deals/title</item>
+                <item name="mp_dailydeal_sidebar_widget_enabled" xsi:type="string">dailydeal/sidebar_widget/enabled</item>
+                <item name="mp_dailydeal_sidebar_widget_qty_remain" xsi:type="string">dailydeal/sidebar_widget/qty_remain</item>
+                <item name="mp_dailydeal_sidebar_widget_qty_sold" xsi:type="string">dailydeal/sidebar_widget/qty_sold</item>
+                <item name="mp_dailydeal_sidebar_random_deals_title" xsi:type="string">dailydeal/sidebar_widget/random_deal/title</item>
+                <item name="mp_dailydeal_sidebar_random_deals_enable" xsi:type="string">dailydeal/sidebar_widget/random_deal/enable</item>
+                <item name="mp_dailydeal_sidebar_random_deals_show_on" xsi:type="string">dailydeal/sidebar_widget/random_deal/show_on</item>
+                <item name="mp_dailydeal_sidebar_random_deals_limit" xsi:type="string">dailydeal/sidebar_widget/random_deal/limit</item>
+                <item name="mp_dailydeal_sidebar_selling_deals_title" xsi:type="string">dailydeal/sidebar_widget/selling_deal/title</item>
+                <item name="mp_dailydeal_sidebar_selling_deals_enable" xsi:type="string">dailydeal/sidebar_widget/selling_deal/enable</item>
+                <item name="mp_dailydeal_sidebar_selling_deals_show_on" xsi:type="string">dailydeal/sidebar_widget/selling_deal/show_on</item>
+                <item name="mp_dailydeal_sidebar_selling_deals_limit" xsi:type="string">dailydeal/sidebar_widget/selling_deal/limit</item>
+                <item name="mp_dailydeal_sidebar_upcoming_deals_title" xsi:type="string">dailydeal/sidebar_widget/upcoming_deal/title</item>
+                <item name="mp_dailydeal_sidebar_upcoming_deals_enable" xsi:type="string">dailydeal/sidebar_widget/upcoming_deal/enable</item>
+                <item name="mp_dailydeal_sidebar_upcoming_deals_show_on" xsi:type="string">dailydeal/sidebar_widget/upcoming_deal/show_on</item>
+                <item name="mp_dailydeal_sidebar_upcoming_deals_limit" xsi:type="string">dailydeal/sidebar_widget/upcoming_deal/limit</item>
             </argument>
         </arguments>
     </type>
